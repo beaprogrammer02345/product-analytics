@@ -2,7 +2,7 @@
 
 client_id = "e6561afd126f97a0e03e6193b0dad31c"
 name = "product_analytics"
-application_url = "https://example.com"
+application_url = "https://product-analytics-obr1eg.fly.dev"
 embedded = true
 
 [access_scopes]
@@ -71,7 +71,11 @@ api_version = "2026-10"
   query_filter = "product.status:'ACTIVE'"
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [
+  "https://product-analytics-obr1eg.fly.dev/auth/callback",
+  "https://product-analytics-obr1eg.fly.dev/auth/shopify/callback",
+  "https://product-analytics-obr1eg.fly.dev/api/auth/callback"
+]
 
 [build]
 automatically_update_urls_on_dev = true

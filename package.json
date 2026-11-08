@@ -24,6 +24,7 @@
     "node": ">=22.12"
   },
   "dependencies": {
+    "@flydotio/litestream": "^1.0.1",
     "@prisma/client": "^6.16.3",
     "@react-router/dev": "7.18.2",
     "@react-router/fs-routes": "7.18.2",
@@ -77,5 +78,8 @@
       "qs": "^6.16.0"
     }
   },
-  "author": "User"
+  "author": "User",
+  "dockerfile": {
+    "litestream": true
+  }
 }
