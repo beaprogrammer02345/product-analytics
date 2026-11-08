@@ -1,0 +1,72 @@
+{% if request.page_type == 'product' and product %}
+
+<script>
+(function () {
+
+    // Logged-in customer identification
+    var viewer = {{ customer.id | append: '' | json }};
+    var isGuest = !viewer;
+
+    // Generate a guest ID if customer is not logged in
+    if (isGuest) {
+
+        viewer = localStorage.getItem('product_analytics_guest_id');
+
+        if (!viewer) {
+            viewer = 'guest_' + Math.random().toString(36).substring(2, 15);
+
+            localStorage.setItem(
+                'product_analytics_guest_id',
+                viewer
+            );
+        }
+    }
+
+    // Send product tracking data to App Proxy
+    fetch('/apps/product_analytics', {
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+
+        body: JSON.stringify({
+            productId: {{ product.id | append: '' | json }},
+            viewer: viewer,
+            isGuest: isGuest
+        })
+
+    })
+    .then(function (response) {
+        if (!response.ok) {
+            throw new Error('Tracking request failed: ' + response.status);
+        }
+
+        return response.json();
+    })
+    .then(function (data) {
+        console.log('Product tracking successful:', data);
+    })
+    .catch(function (error) {
+        console.error('Product tracking error:', error);
+    });
+
+})();
+</script>
+
+{% endif %}
+
+{% schema %}
+{
+    "name": "Product Analytics",
+    "target": "body",
+    "settings": [
+        {
+            "type": "text",
+            "id": "product_analytics_id",
+            "label": "Product Analytics ID"
+        }
+    ]
+}
+{% endschema %}
