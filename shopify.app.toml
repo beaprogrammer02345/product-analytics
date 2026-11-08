@@ -71,7 +71,7 @@ api_version = "2026-10"
   query_filter = "product.status:'ACTIVE'"
 
 [auth]
-redirect_urls = [ "https://product-analytics-3bsd.onrender.com/api/auth" ]
+redirect_urls = [ "https://product-analytics-3bsd.onrender.com/auth/callback" ]
 
 [build]
 automatically_update_urls_on_dev = true
