@@ -2,7 +2,7 @@
 
 client_id = "e6561afd126f97a0e03e6193b0dad31c"
 name = "product_analytics"
-application_url = "https://example.com"
+application_url = "https://product-analytics-3bsd.onrender.com"
 embedded = true
 
 [access_scopes]
@@ -71,12 +71,14 @@ api_version = "2026-10"
   query_filter = "product.status:'ACTIVE'"
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [ "https://product-analytics-3bsd.onrender.com/api/auth" ]
 
 [build]
 automatically_update_urls_on_dev = true
 
 [app_proxy]
-url="/api/tracking"
+url="https://product-analytics-3bsd.onrender.com/api/tracking"
 prefix="apps"
 subpath="product_analytics"
+
+
